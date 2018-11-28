@@ -10,7 +10,7 @@
 
     <div class="usermotto">
       <div class="user-motto">
-        <card :text="motto"></card>
+        <card :body="motto"></card>
       </div>
     </div>
 
