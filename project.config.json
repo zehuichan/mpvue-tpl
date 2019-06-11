@@ -11,6 +11,8 @@
 	"compileType": "miniprogram",
 	"appid": "touristappid",
 	"projectname": "mpvue-tpl",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
