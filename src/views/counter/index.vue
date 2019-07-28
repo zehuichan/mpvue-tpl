@@ -2,11 +2,9 @@
   <div class="counter-warp">
     <p>Vuex counter：{{ count }}</p>
     <p>
-      <button @click="increment">+</button>
-      <button @click="decrement">-</button>
+      <van-button type="primary" size="mini" @click="increment">+</van-button>
+      <van-button type="danger" size="mini" @click="decrement">-</van-button>
     </p>
-
-    <a href="/views/index/main" class="home">去往首页</a>
   </div>
 </template>
 
@@ -35,12 +33,5 @@ export default {
 .counter-warp {
   text-align: center;
   margin-top: 100px;
-}
-.home {
-  display: inline-block;
-  margin: 100px auto;
-  padding: 5px 10px;
-  color: blue;
-  border: 1px solid blue;
 }
 </style>

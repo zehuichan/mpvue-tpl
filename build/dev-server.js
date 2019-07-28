@@ -13,6 +13,7 @@ var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var portfinder = require('portfinder')
 var webpackConfig = require('./webpack.dev.conf')
+var utils = require('./utils')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -24,6 +25,9 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 var compiler = webpack(webpackConfig)
+if (process.env.PLATFORM === 'swan') {
+  utils.writeFrameworkinfo()
+}
 
 // var devMiddleware = require('webpack-dev-middleware')(compiler, {
 //   publicPath: webpackConfig.output.publicPath,
@@ -43,7 +47,7 @@ var compiler = webpack(webpackConfig)
 // })
 
 // proxy api requests
-Object.keys(proxyTable).forEach(function (context) {
+Object.keys(proxyTable).forEach(function(context) {
   var options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }
@@ -85,7 +89,7 @@ var readyPromise = new Promise(resolve => {
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = port
   portfinder.getPortPromise()
-  .then(newPort => {
+    .then(newPort => {
       if (port !== newPort) {
         console.log(`${port}端口被占用，开启新端口${newPort}`)
       }
@@ -101,7 +105,7 @@ module.exports = new Promise((resolve, reject) => {
           server.close()
         }
       })
-  }).catch(error => {
+    }).catch(error => {
     console.log('没有找到空闲端口，请打开任务管理器杀死进程端口再试', error)
   })
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card__header" v-if="$slots.header || header">
-      <slot name="header">{{ header }}</slot>
+      <slot name="header">{{header}}</slot>
     </div>
     <div class="card__body">
       <slot>{{body}}</slot>
@@ -30,8 +30,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
-  @import '~@/assets/less/1px.less';
-
   .card {
     font-size: 12px;
     line-height: 20px;
@@ -47,7 +45,6 @@
 
   .card__header {
     padding: 11px 16px;
-    .vux-1px-b();
     box-sizing: border-box;
   }
 

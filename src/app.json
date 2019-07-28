@@ -9,5 +9,9 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "van-button": "/static/vant-weapp/lib/button/index",
+    "van-nav-bar": "/static/vant-weapp/lib/nav-bar/index"
   }
 }

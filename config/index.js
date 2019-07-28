@@ -1,18 +1,30 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 var fileExtConfig = {
-    swan: {
-        template: 'swan',
-        script: 'js',
-        style: 'css',
-        platform: 'swan'
-    },
-    wx: {
-        template: 'wxml',
-        script: 'js',
-        style: 'wxss',
-        platform: 'wx'
-    }
+  swan: {
+    template: 'swan',
+    script: 'js',
+    style: 'css',
+    platform: 'swan'
+  },
+  tt: {
+    template: 'ttml',
+    script: 'js',
+    style: 'ttss',
+    platform: 'tt'
+  },
+  wx: {
+    template: 'wxml',
+    script: 'js',
+    style: 'wxss',
+    platform: 'wx'
+  },
+  my: {
+    template: 'axml',
+    script: 'js',
+    style: 'acss',
+    platform: 'my'
+  }
 }
 var fileExt = fileExtConfig[process.env.PLATFORM]
 

@@ -1,105 +1,67 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
-
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
+  <div @click="clickHandle">
+    <van-nav-bar
+      title="标题"
+      left-text="返回"
+      right-text="按钮"
+      left-arrow
+      :safe-area-inset-top="false"
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+    >
+      <div slot="title" v-if="true">
+        chenzehui
       </div>
-    </div>
-
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :body="motto"></card>
-      </div>
-    </div>
-
-    <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
+    </van-nav-bar>
     <a href="/views/counter/main" class="counter">去往Vuex示例页面</a>
+    <van-button type="primary">按钮</van-button>
+    <card>
+      <div slot="header">123</div>
+      <div>陈泽辉</div>
+    </card>
   </div>
 </template>
 
 <script>
-import card from '@/components/card'
+  import Card from '@/components/Card'
 
-export default {
-  data () {
-    return {
-      motto: 'Hello World',
-      userInfo: {}
-    }
-  },
-
-  components: {
-    card
-  },
-
-  methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
+  export default {
+    components: {
+      Card
     },
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
+    data() {
+      return {
+        motto: 'Hello miniprograme',
+        userInfo: {
+          nickName: 'mpvue',
+          avatarUrl: 'http://mpvue.com/assets/logo.png'
         }
-      })
+      }
     },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
-    }
-  },
+    methods: {
+      bindViewTap() {
+        const url = '../logs/main'
+        if (mpvuePlatform === 'wx') {
+          mpvue.switchTab({ url })
+        } else {
+          mpvue.navigateTo({ url })
+        }
+      },
+      clickHandle(ev) {
+        console.log('clickHandle:', ev)
+      },
+      onClickLeft() {
+      },
+      onClickRight() {
+      }
+    },
+    created() {
 
-  created () {
-    // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+    }
   }
-}
 </script>
 
-<style scoped>
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="less" rel="stylesheet/less" type="text/less">
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 150px;
-}
-
-.form-control {
-  display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-}
-
-.counter {
-  display: inline-block;
-  margin: 10px auto;
-  padding: 5px 10px;
-  color: blue;
-  border: 1px solid blue;
-}
 </style>
